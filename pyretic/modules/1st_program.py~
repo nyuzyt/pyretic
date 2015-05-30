@@ -1,0 +1,11 @@
+from pyretic.lib.corelib import *
+from pyretic.lib.std import *
+
+def main(clients, servers):
+    from pyretic.modules.mac_learner import mac_learner
+
+    num_clients = int(clients)
+    num_servers = int(servers)
+
+    print "clients %d" % num_clients
+    print "servers %d" % num_servers
