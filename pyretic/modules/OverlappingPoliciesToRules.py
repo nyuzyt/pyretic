@@ -8,13 +8,13 @@ def main():
 	list_measureDstIPs = []
 	list_fwdSrcIPs = []
 	list_fwdDstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedMeasurementPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/overlappedMeasurementPolicies.txt','r') as f:
     		for line in f:
         		(srcip,dstip) =line.split(", ",1)
 			dstip,temp = dstip.split(", ",1)
 			list_measureSrcIPs.append(srcip)
 			list_measureDstIPs.append(dstip)
-	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedReachabilityPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/overlappedReachabilityPolicies.txt','r') as f:
 		for line in f:
 			(srcip,dstip_temp) = line.split(", ",1)
 			dstip_temp = dstip_temp.split("(")

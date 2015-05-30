@@ -8,7 +8,7 @@ import time
 def main():
 	list_fwdSrcIPs = []
 	list_fwdDstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedReachabilityPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/ReachabilityPolicies.txt','r') as f:
 		for line in f:
 			(srcip,dstip_temp) = line.split(", ",1)
 			dstip_temp = dstip_temp.split("(")

@@ -5,7 +5,7 @@ from pyretic.lib.query import *
 def main():
  	list_srcIPs = []
 	list_dstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedMeasurementPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/MeasurementPolicies.txt','r') as f:
     		for line in f:
         		(srcip,dstip) =line.split(", ",1)
 			dstip,temp = dstip.split(", ",1)
