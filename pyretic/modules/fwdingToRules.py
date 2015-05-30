@@ -1,12 +1,14 @@
+
 from pyretic.lib.corelib import *
 from pyretic.lib.std import *
 from pyretic.lib.query import *
 import ipaddress
 import time
+
 def main():
 	list_fwdSrcIPs = []
 	list_fwdDstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/SDN_RuleSetGenerator/matchedReachabilityPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedReachabilityPolicies.txt','r') as f:
 		for line in f:
 			(srcip,dstip_temp) = line.split(", ",1)
 			dstip_temp = dstip_temp.split("(")

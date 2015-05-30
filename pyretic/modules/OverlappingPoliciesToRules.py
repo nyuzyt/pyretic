@@ -8,13 +8,13 @@ def main():
 	list_measureDstIPs = []
 	list_fwdSrcIPs = []
 	list_fwdDstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/SDN_RuleSetGenerator/matchedMeasurementPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedMeasurementPolicies.txt','r') as f:
     		for line in f:
         		(srcip,dstip) =line.split(", ",1)
 			dstip,temp = dstip.split(", ",1)
 			list_measureSrcIPs.append(srcip)
 			list_measureDstIPs.append(dstip)
-	with open('/home/vishlesh/SDN_RuleSetGenerator/SDN_RuleSetGenerator/matchedReachabilityPolicies.txt','r') as f:
+	with open('/home/vishlesh/SDN_RuleSetGenerator/matchedReachabilityPolicies.txt','r') as f:
 		for line in f:
 			(srcip,dstip_temp) = line.split(", ",1)
 			dstip_temp = dstip_temp.split("(")
@@ -32,7 +32,7 @@ def main():
 	
 	
 	for fwdSrcip,fwdDstip in zip(list_fwdSrcIPs,list_fwdDstIPs):
-		print("here")
+		#print("here")
 		for each_srcip,each_dstip in zip(list_measureSrcIPs,list_measureDstIPs):
 			if(isSourceMatch(fwdSrcip,each_srcip)==True):
 				#print("sourceIP matched")
