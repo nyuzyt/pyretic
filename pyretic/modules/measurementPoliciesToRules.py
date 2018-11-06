@@ -5,11 +5,11 @@ from pyretic.lib.query import *
 def main():
  	list_srcIPs = []
 	list_dstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/MeasurementPolicies.txt','r') as f:
+	with open('/home/ovs2/zyt/PolicyBench/PolicyGenerator/MeasurementPolicies.txt','r') as f:
     		for line in f:
         		(srcip,dstip) =line.split(", ",1)
 			dstip,temp = dstip.split(", ",1)
-			
+
 			list_srcIPs.append(srcip)
 			list_dstIPs.append(dstip)
 	i=1
@@ -18,5 +18,5 @@ def main():
 	for srcip,dstip in zip(list_srcIPs,list_dstIPs):
 		print("srcip:",srcip,"dstip:",dstip)
 		policy = policy + (match(srcip = str(srcip),dstip = str(dstip))>>drop)
-		
+
       	return policy

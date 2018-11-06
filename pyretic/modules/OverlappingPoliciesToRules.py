@@ -8,29 +8,29 @@ def main():
 	list_measureDstIPs = []
 	list_fwdSrcIPs = []
 	list_fwdDstIPs = []
-	with open('/home/vishlesh/SDN_RuleSetGenerator/overlappedMeasurementPolicies.txt','r') as f:
+	with open('/home/ovs2/zyt/PolicyBench/PolicyGenerator/overlappedMeasurementPolicies.txt','r') as f:
     		for line in f:
         		(srcip,dstip) =line.split(", ",1)
 			dstip,temp = dstip.split(", ",1)
 			list_measureSrcIPs.append(srcip)
 			list_measureDstIPs.append(dstip)
-	with open('/home/vishlesh/SDN_RuleSetGenerator/overlappedReachabilityPolicies.txt','r') as f:
+	with open('/home/ovs2/zyt/PolicyBench/PolicyGenerator/overlappedReachabilityPolicies.txt','r') as f:
 		for line in f:
 			(srcip,dstip_temp) = line.split(", ",1)
 			dstip_temp = dstip_temp.split("(")
 			DstIp = []
 			for each_ip in dstip_temp:
 				if not each_ip.find('.')==-1:
-					each_ip = each_ip.split("'")	
-					ip = each_ip[1]				
+					each_ip = each_ip.split("'")
+					ip = each_ip[1]
 					DstIp.append(ip)
 			list_fwdSrcIPs.append(srcip)
 			list_fwdDstIPs.append(DstIp)
 	i=1
-	
+
 	policy = none
-	
-	
+
+
 	for fwdSrcip,fwdDstip in zip(list_fwdSrcIPs,list_fwdDstIPs):
 		#print("here")
 		for each_srcip,each_dstip in zip(list_measureSrcIPs,list_measureDstIPs):
@@ -40,14 +40,14 @@ def main():
 					if(isDestMatch(each_ip,each_dstip)==True):
 						policy = policy + (match(srcip = str(fwdSrcip),dstip = str(each_ip)) >> fwd(i))
 						i=i+1
-	
+
 	## since we have a action: count supported in ovs switch, we will install the drop action instead in accordance to see overlapping in rules
 	for srcip,dstip in zip(list_measureSrcIPs,list_measureDstIPs):
 		print("srcip:",srcip,"dstip:",dstip)
 		policy = policy + (match(srcip = str(srcip),dstip = str(dstip))>>drop)
 		i=i+1
-		
-	print(policy)	
+
+	print(policy)
 	print(i)
 	print("finish")
 	return policy
@@ -63,7 +63,7 @@ def isSourceMatch(endHost,subnetIPaddr):
 def isDestMatch(subnetAddrBig,subnetAddrSmall):
         set1 =([])
 	subnetAddrBig = ipaddress.ip_network(unicode(subnetAddrBig))
-	subnetAddrSmall = ipaddress.ip_network(unicode(subnetAddrSmall))	
+	subnetAddrSmall = ipaddress.ip_network(unicode(subnetAddrSmall))
         prefix = subnetAddrBig._prefixlen
 ##	print(subnetAddrBig,subnetAddrSmall)
         subnetList = []
